@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "_id": "000000000000000000000001",
+      "name": "Andrew",
+      "age": 23,
+      "habits": [
+        {"_id": "a-h-1", "name": "Push Ups", "completed": false, "color": "red", "isActive": true},
+        {"_id": "a-h-2", "name": "Gym", "completed": false, "color": "blue", "isActive": true},
+        {"_id": "a-h-3", "name": "Healthy Eating", "completed": false, "color": "green", "isActive": true},
+        {"_id": "a-h-4", "name": "Wake Up Early", "completed": false, "color": "amber", "isActive": true},
+        {"_id": "a-h-5", "name": "Daily Stretch", "completed": false, "color": "teal", "isActive": true}
+      ],
+      "friends": [{"user": "000000000000000000000002"}],
+      "currentChallenge": "000000000000000000000100"
+    },
+    {
+      "_id": "000000000000000000000002",
+      "name": "Makai",
+      "age": 23,
+      "habits": [
+        {"_id": "m-h-1", "name": "10k Steps", "completed": false, "color": "lime", "isActive": true},
+        {"_id": "m-h-2", "name": "Reading", "completed": false, "color": "indigo", "isActive": true},
+        {"_id": "m-h-3", "name": "Meditating", "completed": false, "color": "violet", "isActive": true},
+        {"_id": "m-h-4", "name": "Stay Off Phone", "completed": false, "color": "orange", "isActive": true}
+      ],
+      "friends": [{"user": "000000000000000000000001"}],
+      "currentChallenge": "000000000000000000000100"
+    }
+  ],
+
+  "challenges": [
+    {
+      "_id": "000000000000000000000100",
+      "name": "End of Year Push",
+      "startDate": "2025-11-19T00:00:00.000Z",
+      "durationDays": 42,
+      "participants": [
+        { "user": "000000000000000000000001", "dailyPctTotals": [] },
+        { "user": "000000000000000000000002", "dailyPctTotals": [] }
+      ]
+    }
+  ]
+}
