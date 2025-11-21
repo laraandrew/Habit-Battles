@@ -19,6 +19,10 @@ app.use('/users', usersRouter);
 app.use('/habits', habitsRouter); // convenience endpoints
 app.use('/challenges', challengesRouter);
 
+app.get('/', (req, res) => {
+  res.send('Habit Battles API is running 🚀');
+});
+
 
 // Global error handler
 app.use((err, req, res, next) => {
