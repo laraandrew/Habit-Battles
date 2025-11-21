@@ -14,7 +14,11 @@ web/dist/
 .web-*/
 .vite/
 coverage/
-./server/env.local
+
+# env files
+server/.env
+.env
+
 
 # OS / editor
 .DS_Store
