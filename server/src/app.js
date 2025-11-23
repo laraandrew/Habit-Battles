@@ -26,6 +26,9 @@ app.get('/', (req, res) => {
   res.send('Habit Battles API is running 🚀');
 });
 
+app.get("/ping", (req, res) => {
+  res.json({ ok: true });
+});
 
 // Global error handler
 app.use((err, req, res, next) => {
