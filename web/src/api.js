@@ -1,5 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
+  baseURL: "http://localhost:3001", 
 });
+
+export async function ping() {
+  try {
+    const res = await api.get("/ping");
+    return res.data;
+  } catch (err) {
+    console.error("Ping failed:", err.message);
+    return null;
+  }
+}
