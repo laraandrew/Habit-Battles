@@ -3,6 +3,8 @@ import { api } from './api.js';
 import ModifyScreen from './screens/ModifyScreen.jsx';
 import LogScreen from './screens/LogScreen.jsx';
 import OnboardingDialog from './components/OnboardingDialog.jsx';
+import GettingStarted from './screens/GettingStarted.jsx';
+import ChallengesScreen from './screens/ChallengesScreen.jsx';
 
 const HABIT_COLORS = [
   'red',
@@ -195,7 +197,9 @@ export default function App() {
           <nav className="flex flex-wrap items-center gap-2 rounded-2xl bg-slate-900/80 p-1">
             {[
               { key: 'log', label: 'Daily Log' },
-              { key: 'modify', label: 'Profile & Habits' }
+              { key: 'challenges', label: 'Challenges' },
+              { key: 'modify', label: 'Profile & Habits' },
+              { key: 'getting-started', label: 'Getting started' }
             ].map((t) => (
               <button
                 key={t.key}
@@ -216,7 +220,7 @@ export default function App() {
 
         <main className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            {tab === 'modify' ? (
+            {tab === 'modify' && (
               <ModifyScreen
                 user={activeUser}
                 allUsers={users}
@@ -224,9 +228,17 @@ export default function App() {
                 onRefreshUsers={loadUsers}
                 onSelectUser={selectUser}
               />
-            ) : (
-              <LogScreen user={activeUser} onUserChange={setActiveUser} onReloadUser={refreshActiveUser} />
             )}
+            {tab === 'log' && <LogScreen user={activeUser} onUserChange={setActiveUser} onReloadUser={refreshActiveUser} />}
+            {tab === 'challenges' && (
+              <ChallengesScreen
+                user={activeUser}
+                users={users}
+                onRefreshUsers={loadUsers}
+                onSelectUser={selectUser}
+              />
+            )}
+            {tab === 'getting-started' && <GettingStarted users={users} activeUser={activeUser} />}
           </div>
           <aside className="space-y-4">
             <div className="rounded-2xl border border-white/5 bg-slate-900/80 p-4 shadow-lg">
