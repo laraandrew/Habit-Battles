@@ -1,39 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import pinoHttp from 'pino-http';
-import usersRouter from './routes/users.js';
-import habitsRouter from './routes/habits.js';
-import challengesRouter from './routes/challenges.js';
-
-const app = express();
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    credentials: true,
-  })
-);
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(pinoHttp({ autoLogging: false }));
-
-// Simple health checks for uptime monitoring.
-app.get('/healthz', (req, res) => res.json({ ok: true }));
-app.get('/ping', (req, res) => res.json({ ok: true }));
-
-// Mount resource routers.
-app.use('/users', usersRouter);
-app.use('/habits', habitsRouter); // convenience endpoints
-app.use('/challenges', challengesRouter);
-
-app.get('/', (req, res) => {
-  res.send('Habit Battles API is running 🚀');
-});
-
-// Global error handler
-app.use((err, req, res, next) => {
-  const status = err.status || 400;
-  res.status(status).json({ error: err.message || 'Unexpected error' });
-});
-
-export default app;
+// server/src/app.js
+// Overview:
+//   Initializes the Express application. Wire up middleware, routes, and error
+//   handling in this module.
+// Responsibilities to implement:
+//   - Configure JSON/body parsing, CORS, request logging, and security headers.
+//   - Mount route modules for users, habits, and challenges under appropriate
+//     base paths.
+//   - Centralize 404 handling and error serialization for API clients.
+//   - Export the configured Express app for serverless handlers or Node servers
+//     to import.
+// Notes:
+//   - Keep middleware order intentional (logging -> parsing -> routes -> errors).
+//   - Include healthcheck endpoint for uptime monitoring.

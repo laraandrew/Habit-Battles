@@ -1,38 +1,15 @@
 // server/src/db.js
-import mongoose from 'mongoose';
-
-const options = {
-  // keep it short so failures are obvious in dev
-  serverSelectionTimeoutMS: 8000,
-};
-
-/**
- * Connect to MongoDB using the provided URI.
- * - On success: logs host + db name
- * - On failure: throws so the caller can exit the process
- */
-export async function connectDB(uri) {
-  try {
-    await mongoose.connect(uri, options);
-
-    const conn = mongoose.connection;
-    console.log(
-      `✅ MongoDB connected successfully. Host: ${conn.host} • DB: ${conn.name}`
-    );
-
-    conn.on('error', (err) => {
-      console.error('❌ MongoDB runtime connection error:', err.message);
-    });
-
-    conn.on('disconnected', () => {
-      console.warn('⚠️  MongoDB disconnected');
-    });
-
-    return conn;
-  } catch (err) {
-    console.error('❌ MongoDB initial connection error:');
-    console.error(err.message || err);
-    // IMPORTANT: rethrow so index.js can stop the server
-    throw err;
-  }
-}
+// Overview:
+//   Database connection utilities using Mongoose. Provides functions to connect,
+//   disconnect, and monitor MongoDB state for the backend service.
+// Responsibilities to implement:
+//   - connect(uri, options): establish a mongoose connection and register event
+//     listeners for open/error/disconnected states.
+//   - disconnect(): gracefully close the mongoose connection (used on shutdown or
+//     in tests).
+//   - getConnection(): helper to access the current mongoose connection instance.
+//   - seedDevelopmentData(): optional helper to seed example users/habits/
+//     challenges for local testing.
+// Notes:
+//   - Ensure mongoose models are registered before attempting to seed data.
+//   - Centralize connection logging to avoid duplication across entrypoints.
