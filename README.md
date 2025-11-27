@@ -51,3 +51,12 @@ This repository contains code compiled from over 30 commits into a single commit
 This project was created to solve a specific problem: my friend and I wanted to compete on completing daily habits. I built this as a full-stack solution to improve my MongoDB and Mongoose skills while creating a functional application for habit tracking competitions.
 
 The architecture uses separate schemas for users, challenges, and habits that work together seamlessly. The React frontend provides an intuitive interface, while the Node.js/Express backend with Mongoose manages all data persistence and relationships.
+
+
+## Images
+<img width="1148" height="716" alt="Screenshot 2025-11-27 at 12 05 50 PM" src="https://github.com/user-attachments/assets/ee5b1b3c-15cf-46a2-9042-05400ce6828a" />
+<img width="819" height="549" alt="Screenshot 2025-11-27 at 12 06 02 PM" src="https://github.com/user-attachments/assets/ea098fbe-f87d-4eb0-9547-2dafb43cb714" />
+<img width="943" height="647" alt="Screenshot 2025-11-27 at 12 06 18 PM" src="https://github.com/user-attachments/assets/58235627-aad4-4fb4-a6df-566becb05e9e" />
+<img width="557" height="349" alt="Screenshot 2025-11-27 at 12 06 29 PM" src="https://github.com/user-attachments/assets/65a188fa-2cd2-4dfa-a7a5-eb05f792e2dc" />
+
+
