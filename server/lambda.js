@@ -1,28 +1,12 @@
 // server/lambda.js
-import 'dotenv/config';
-import serverless from 'serverless-http';
-import app from './src/app.js';
-import { connectDB } from './src/db.js';
-
-const URI = process.env.MONGODB_URI;
-if (!URI) {
-  console.error('❌ Missing MONGODB_URI env var');
-  throw new Error('Missing MONGODB_URI');
-}
-
-let isConnected = false;
-
-// Wrap the Express app for Lambda
-const expressHandler = serverless(app);
-
-export const handler = async (event, context) => {
-  // Don’t wait for Node’s event loop to be empty (important for DB reuse)
-  context.callbackWaitsForEmptyEventLoop = false;
-
-  if (!isConnected) {
-    await connectDB(URI);
-    isConnected = true;
-  }
-
-  return expressHandler(event, context);
-};
+// Overview:
+//   Serverless adapter for the Express backend so it can run in AWS Lambda or
+//   similar FaaS environments.
+// Responsibilities to implement:
+//   - Load environment configuration (e.g., MONGODB_URI) required for startup.
+//   - Initialize database connectivity once per cold start and reuse across
+//     invocations.
+//   - Wrap and export the Express app handler via serverless-http (or equivalent).
+//   - Ensure callbackWaitsForEmptyEventLoop is disabled to allow connection reuse.
+// Notes:
+//   - Keep this entrypoint lightweight; heavy bootstrapping belongs in src/.
