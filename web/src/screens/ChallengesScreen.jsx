@@ -259,7 +259,7 @@ export default function ChallengesScreen({ user, users, onRefreshUsers, onSelect
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-semibold">{p.user.name}</p>
-                    <p className="text-[11px] text-slate-400">Average {averagePct(p)}% across {p.dailyPctTotals.length || 0} days</p>
+                    <p className="text-[11px] text-slate-400">Average {averagePct(p)}% across {p.dailySnapshots.length || 0} days</p>
                   </div>
                   <div className="text-right space-y-1">
                     <input
@@ -283,14 +283,14 @@ export default function ChallengesScreen({ user, users, onRefreshUsers, onSelect
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-1">
-                  {p.dailyPctTotals.length ? (
-                    p.dailyPctTotals.map((pct, idx) => (
+                  {p.dailySnapshots.length ? (
+                    p.dailySnapshots.map((snapshot, idx) => (
                       <div
                         key={idx}
                         className="h-10 w-8 rounded-lg bg-gradient-to-b from-emerald-400/70 to-slate-900/80 flex flex-col justify-end overflow-hidden"
-                        title={`Day ${idx + 1}: ${pct}%`}
+                        title={`${snapshot.dateLabel}: ${snapshot.pct}%`}
                       >
-                        <div style={{ height: `${pct}%` }} className="w-full bg-emerald-500/80" />
+                        <div style={{ height: `${snapshot.pct}%` }} className="w-full bg-emerald-500/80" />
                       </div>
                     ))
                   ) : (
@@ -307,9 +307,9 @@ export default function ChallengesScreen({ user, users, onRefreshUsers, onSelect
 }
 
 function averagePct(participant) {
-  if (!participant?.dailyPctTotals?.length) return 0;
-  const sum = participant.dailyPctTotals.reduce((a, b) => a + b, 0);
-  return Math.round(sum / participant.dailyPctTotals.length);
+  if (!participant?.dailySnapshots?.length) return 0;
+  const sum = participant.dailySnapshots.reduce((a, b) => a + b.pct, 0);
+  return Math.round(sum / participant.dailySnapshots.length);
 }
 
 function winnerName(challenge) {

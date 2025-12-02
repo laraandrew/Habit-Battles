@@ -36,8 +36,8 @@
       "startDate": "2025-11-19T00:00:00.000Z",
       "durationDays": 42,
       "participants": [
-        { "user": "000000000000000000000001", "dailyPctTotals": [] },
-        { "user": "000000000000000000000002", "dailyPctTotals": [] }
+        { "user": "000000000000000000000001", "dailySnapshots": [] },
+        { "user": "000000000000000000000002", "dailySnapshots": [] }
       ]
     }
   ]
